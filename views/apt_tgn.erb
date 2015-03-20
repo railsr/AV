@@ -1,24 +1,22 @@
 <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Цена</th>
-      <th>Тип</th>
-      <th>Адрес</th>
-      <th>Дата Публикации</th>
+	<thead>
+		<tr>
+			<th>Цена</th>
+			<th>Тип</th>
+			<th>Адрес</th>
+			<th>Дата Публикации</th>
 			<th>#</th>
-    </tr>
-  </thead>
-  <tbody>
+		</tr>
+	</thead>
+	<tbody>
 		<% @itms.each do |apt| %>
-    <tr>
-			
+		<tr>			
 			<td id="price"><%= apt[:cost] %></td>
-      <td id="title"><a href="<%= apt[:url] %>"><%= apt[:title] %></a></td>
-      <td id="address"><%= apt[:address] %></td>
-      <td id="p_date"><%= apt[:date] %></td>
-      <td id="is_agency"><span class="label label-warning"><%= apt[:owner] %></span></td>
-	
-    </tr>
+			<td id="title"><a href="<%= apt[:url] %>"><%= apt[:title] %></a></td>
+			<td id="address"><%= apt[:address] %></td>
+			<td id="date"><%= apt[:date] %></td>
+			<td id="owner"><span class="label label-warning"><%= apt[:owner] %></span></td>
+		</tr>
 		<% end %>						
-  </tbody>
+	</tbody>
 </table>
