@@ -6,9 +6,9 @@
 		<tr>
 			<th>Цена</th>
 			<th>Название</th>
-			<th>Дата</th>
-			<th>#</th>
-			<th>Фото</th>
+			<th class="hidden-xs">Дата</th>
+			<th class="hidden-xs">#</th>
+			<th class="hidden-xs">Фото</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,9 +17,9 @@
 			<% if m[:title].match(/[15]{2}/) %>
 			<td id="price"><span class="<%= "label label-success" if m[:cost]<=100000 %>"><%= m[:cost] %></span></td>
 			<td id="title"><a href="<%= m[:url] %>"><%= m[:title] %></a></td>
-			<td id="date"><%= m[:date] %></td>
-			<td id="owner"><span class="label label-warning"><%= m[:owner] %></span></td>
-			<td id="photo_cout"><span class="<%= "label label-danger" if m[:photo_count]<=1 %>"><%= m[:photo_count] %> шт</span></td>
+			<td class="hidden-xs" id="date"><%= m[:date] %></td>
+			<td class="hidden-xs" id="owner"><span class="label label-warning"><%= m[:owner] %></span></td>
+			<td class="hidden-xs" id="photo_cout"><span class="<%= "label label-danger" if m[:photo_count]<=1 %>"><%= m[:photo_count] %> шт</span></td>
 			<% end %>
 		</tr>
 		<% end %>						

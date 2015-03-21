@@ -4,8 +4,8 @@
 			<th>Цена</th>
 			<th>Тип</th>
 			<th>Адрес</th>
-			<th>Дата Публикации</th>
-			<th>#</th>
+			<th class="hidden-xs">Дата Публикации</th>
+			<th class="hidden-xs">#</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,8 +14,8 @@
 			<td id="price"><%= apt[:cost] %></td>
 			<td id="title"><a href="<%= apt[:url] %>"><%= apt[:title] %></a></td>
 			<td id="address"><%= apt[:address] %></td>
-			<td id="date"><%= apt[:date] %></td>
-			<td id="owner"><span class="label label-warning"><%= apt[:owner] %></span></td>
+			<td class="hidden-xs" id="date"><%= apt[:date] %></td>
+			<td class="hidden-xs" id="owner"><span class="label label-warning"><%= apt[:owner] %></span></td>
 		</tr>
 		<% end %>						
 	</tbody>
