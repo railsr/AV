@@ -13,7 +13,6 @@ get '/' do
   File.read(File.join('public/app', 'index.html'))
 end
 
-#apt_tgn.json
 get '/apts_tgn' do
   content_type :json
   list(5, "https://www.avito.ru/taganrog/kvartiry/sdam/na_dlitelnyy_srok/1-komnatnye?i=1&district=472", "apt")
