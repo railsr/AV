@@ -1,26 +1,32 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'mechanize'
+require 'json'
 
-get '/' do  
-  erb :index, :layout => :'layouts/application'
+
+configure do
+  set :root, File.dirname(__FILE__)
+  set :public_folder, "public/app"
 end
 
-get '/rmbp15' do
-  list(3, "https://www.avito.ru/rossiya/noutbuki?q=macbook+pro+15+retina", "el")  
-  erb :rmbp15, :layout => :'layouts/application'
+get '/' do
+  File.read(File.join('public/app', 'index.html'))
 end
 
-get '/apt_tgn' do
-  list(3, "https://www.avito.ru/taganrog/kvartiry/sdam/na_dlitelnyy_srok/1-komnatnye?i=1&pmax=10000&pmin=6000&district=472", "apt")  
-  erb :apt_tgn, :layout => :'layouts/application'
+#apt_tgn.json
+get '/apts_tgn' do
+  content_type :json
+  list(5, "https://www.avito.ru/taganrog/kvartiry/sdam/na_dlitelnyy_srok/1-komnatnye?i=1&district=472", "apt")
+  @itms.to_json
+  JSON.pretty_generate(@itms)
 end
 
-get '/about' do
-  erb :about, :layout => :'layouts/application'
+get '/macs' do
+  content_type :json
+  list(3, "https://www.avito.ru/rossiya/noutbuki?q=macbook+pro+15+retina", "el")
+  @itms.to_json
+  JSON.pretty_generate(@itms)
 end
-
-
 
 #HELPERS
 
@@ -29,7 +35,7 @@ end
 def list(page_count, url, type)
   agent = Mechanize.new
   pages, items, item = [],[],[]
-  
+
   (1..page_count).each do |p|
     begin
       pages << agent.get(url+"&p=#{p}")
@@ -40,8 +46,8 @@ def list(page_count, url, type)
   end
 
   pages.each do |page|
-    page.search('div.item').each do |m|
-        
+    page.search('.js-catalog_after-ads>div.item').each do |m|
+
       item << m.at_css('.title').text.strip #title
       item << m.at_css('.about').text.strip.gsub(/[^0-9a-z]/i, '').to_i #cost
       item << m.at_css('h3.title a').map {|link| 'https://www.avito.ru'+link.last}.first #url
@@ -49,7 +55,7 @@ def list(page_count, url, type)
       item << m.at_css('.data p').text.strip #owner_type
       item << m.at_css('i').text.strip.to_i #photo_count
       item << m.at_css('.address').text.strip if m.at_css('.address') #address
-            
+
       case type
       when "el"
         items << item.take(6)
@@ -61,8 +67,5 @@ def list(page_count, url, type)
         item = []
       end
     end
-  end   
+  end
 end
-  
-
-
