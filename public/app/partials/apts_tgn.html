@@ -1,27 +1,29 @@
 <div ng-controller="AptTgnCtrl">
-	<div class="row">
-		<div class="col-md-4">
-			<input type="text" id="search" class="form-control" placeholder="Поиск по результатам..." ng-model="search.$">
-		</div>
-	</div>
-	<table  class="table table-hover">
-		<thead>
-			<tr>
-				<th>Цена</th>
-				<th>Тип</th>
-				<th>Адрес</th>
-				<th class="hidden-xs">Дата Публикации</th>
-				<th class="hidden-xs">#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="apt in appartments | filter:search">
-				<td id="cost">{{ apt.cost}}</td>
-				<td id="title"><a href="{{apt.url}}">{{ apt.title}}</a></td>
-				<td id="address">{{ apt.address}}</td>
-				<td class="hidden-xs" id="date">{{ apt.date}}</td>
-				<td class="hidden-xs" id="owner"><span class="label label-default">{{ apt.owner}}</span></td>
-			</tr>
-		</tbody>
-	</table>
+  <div class="row">
+    <div class="col-md-4">
+      <input type="text" id="search" class="form-control" placeholder="Поиск по результатам..." ng-model="search.$">
+    </div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Цена</th>
+        <th>Тип</th>
+        <th>Адрес</th>
+        <th class="hidden-xs">Дата Публикации</th>
+        <th class="hidden-xs">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="apt in appartments | filter:search">
+        <td id="cost">{{ apt.cost}}</td>
+        <td id="title"><a href="{{apt.url}}">{{ apt.title}}</a>
+        </td>
+        <td id="address">{{ apt.address}}</td>
+        <td class="hidden-xs" id="date">{{ apt.date}}</td>
+        <td class="hidden-xs" id="owner"><span class="label label-default">{{ apt.owner}}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
