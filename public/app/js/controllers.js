@@ -25,4 +25,11 @@ avControllers.controller("MacCtrl", function($scope, $http){
     });
 });
 
+avControllers.controller("Rx8Ctrl", function($scope, $http){
+    $scope.rxs = [];
+    $http.get('/rx8').success(function(data){
+			console.log(data);
+        $scope.rxs = data;
+    });
+});
 

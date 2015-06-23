@@ -1,0 +1,30 @@
+<div ng-controller="Rx8Ctrl">
+	<div class="row">
+		<div class="col-md-4">
+			<input type="text" id="search" class="form-control" placeholder="Поиск по результатам..." ng-model="search.$">
+		</div>
+	</div>
+	<table  class="table table-hover">
+		<thead>
+			<tr>
+				<th>Цена</th>
+				<th>Название</th>
+				<th class="hidden-xs">Дата</th>
+				<th class="hidden-xs">#</th>
+				<th class="hidden-xs">Фото</th>
+				<th>Пробег</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="rx in rxs | filter:search">
+				<td id="cost"><span ng-class="{'label label-success': rx.cost<=350000,
+					'label label-warning': (rx.cost>350000 && rx.cost<=400000)}">{{ rx.cost}}</td>
+					<td id="title"><a href="{{rx.url}}">{{ rx.title}}</a></td>
+					<td class="hidden-xs" id="date">{{ rx.date}}</td>
+					<td class="hidden-xs" id="owner"><span class="label label-default">{{ rx.owner}}</span></td>
+					<td class="hidden-xs" id="photo_cout"><span ng-class="{'label label-danger' : rx.photo_count <= 1}">{{rx.photo_count}} шт</span></td>
+					<td class="hidden-xs" id="date">{{ rx.mileage }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
