@@ -15,11 +15,8 @@ avApp.config(['$routeProvider', '$locationProvider',
                controller: 'AptTgnCtrl'
            }).when('/macs',{
                templateUrl: 'partials/macs.html',
-               controller: 'MacCtrl'                   
-           }).when('/rx8',{
-               templateUrl: 'partials/rx8.html',
-						 controller: 'Rx8Ctrl'  
-					 }).otherwise({
+               controller: 'MacCtrl'
+           }).otherwise({
                redirectTo: '/'
            });
        $locationProvider.html5Mode(false).hashPrefix('!');
